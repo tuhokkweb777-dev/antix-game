@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>antix_game</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%23a78bfa'/><g fill='none' stroke='%231e1b4b' stroke-width='2.2' stroke-linecap='round'><circle cx='8' cy='12' r='4.5'/><path d='M12.5 12H20'/><path d='M17 12v3.5'/></g></svg>">
+<meta name="description" content="Telegram-канал antix_game">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #18181b;
+    --muted: #71717a;
+    --card: #f4f4f5;
+    --border: #e4e4e7;
+    --accent: #18181b;
+    --accent-fg: #ffffff;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #09090b;
+      --fg: #fafafa;
+      --muted: #a1a1aa;
+      --card: #18181b;
+      --border: #27272a;
+      --accent: #fafafa;
+      --accent-fg: #09090b;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #09090b;
+    --fg: #fafafa;
+    --muted: #a1a1aa;
+    --card: #18181b;
+    --border: #27272a;
+    --accent: #fafafa;
+    --accent-fg: #09090b;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.35), transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(236, 72, 153, 0.30), transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.30), transparent 50%),
+      linear-gradient(160deg, #1e1b4b 0%, #312e81 35%, #4c1d95 70%, #831843 100%);
+    background-attachment: fixed;
+    color: #fafafa;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 64px 20px 48px;
+  }
+  .avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f0abfc 0%, #a78bfa 50%, #67e8f9 100%);
+    box-shadow: 0 12px 30px -8px rgba(240, 171, 252, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: var(--accent-fg);
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 auto 20px;
+  }
+  .avatar svg { width: 46px; height: 46px; }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+  }
+  .sub {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 32px;
+  }
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: #fafafa;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .card:hover, .card:focus-visible {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.35);
+    outline: none;
+  }
+  .card .title { font-weight: 600; }
+  .card .desc { color: rgba(255, 255, 255, 0.7); font-size: 14px; }
+  .card .arrow {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .card:hover .arrow { transform: translateX(3px); background: rgba(255, 255, 255, 0.3); }
+  .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(135deg, #f0abfc 0%, #a78bfa 50%, #67e8f9 100%);
+    color: #1e1b4b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 24px 0 12px;
+    box-shadow: 0 10px 30px -6px rgba(240, 171, 252, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover, .btn:focus-visible {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 16px 40px -6px rgba(103, 232, 249, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    outline: none;
+  }
+  .btn:active { transform: scale(0.98); }
+  .note {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    margin: 0;
+  }
+  footer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    margin-top: 48px;
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1e1b4b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4.5"/><path d="M12.5 12H22"/><path d="M18 12v3.5"/><path d="M21.5 12v2.5"/></svg></div>
+    <h1>antix_game</h1>
+    <p class="sub">Telegram-канал</p>
+
+    <nav aria-label="Ссылки">
+      <a class="card" href="https://t.me/antix_game" target="_blank" rel="noopener">
+        <div>
+          <div class="title">Канал в Telegram</div>
+          <div class="desc">@antix_game</div>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="card" href="https://t.me/ciwwab" target="_blank" rel="noopener">
+        <div>
+          <div class="title">Написать в Telegram</div>
+          <div class="desc">@ciwwab</div>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+    <a class="btn" href="https://t.me/ciwwab" target="_blank" rel="noopener">Оплатить ключ</a>
+    <p class="note">Откроется личный аккаунт в Telegram</p>
+
+    <footer>© antix_game</footer>
+  </main>
+</body>
+</html>
